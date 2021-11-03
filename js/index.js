@@ -27,8 +27,8 @@ Marquee()
 function InitMarquee() {
   let w = wrap.clientWidth;
   let h = wrap.clientHeight;
-  console.log("clientHeight:  " + h)
-  console.log("window height: " + variableHeight)
+  // console.log("clientHeight:  " + h)
+  // console.log("window height: " + variableHeight)
   h = variableHeight;
   ellipse.setAttributeNS(null, "viewBox", `0 0 ${w}  ${h}`);
   let d=`M100,80 h${w-200} a20,20 0 0 1 20,20 v${h-200} a20,20 0 0 1 -20,20 h-${w-200} a20,20 0 0 1 -20,-20 v-${h-200} a20,20 0 0 1 20,-20 h${w-200} a20,20 0 0 1 20,20 v${h-200} a20,20 0 0 1 -20,20 h-${w-200} a20,20 0 0 1 -20,-20 v-${h-200} a20,20 0 0 1 20,-20 z`;
@@ -39,6 +39,41 @@ function InitMarquee() {
 
   thePath.setAttributeNS(null, "d", d);
   // thePath.setAttributeNS(null, "stroke", "#808600");
+  // let path_length =  thePath.getTotalLength();
+  
+  
+  // //begin at a bigger size than needed then size down
+  // var font_size = 30;
+  // if(w>=900){
+  //   font_size = 60;
+  // }
+  // ellipse.style.fontSize = font_size+"px"; 
+
+  // // thePath.setAttributeNS(null,"textLength",path_length/2)
+  
+  // // while the text length is bigger than half path length 
+  // while(tp.getComputedTextLength() > path_length / 2 ){
+  //   //reduce the font size
+  //   font_size -= 0.4;
+  //   //reset the font size 
+  //   ellipse.style.fontSize = font_size+"px";
+  // }
+}
+
+// window.addEventListener('scroll', throttle(callback, 40));
+
+function throttle(fn, wait) {
+  var time = Date.now();
+  return function() {
+    if ((time + wait - Date.now()) < 0) {
+      fn();
+      time = Date.now();
+    }
+  }
+}
+
+function callback(){
+  let w = wrap.clientWidth;
   let path_length =  thePath.getTotalLength();
   
   
@@ -54,7 +89,7 @@ function InitMarquee() {
   // while the text length is bigger than half path length 
   while(tp.getComputedTextLength() > path_length / 2 ){
     //reduce the font size
-    font_size -= 1;
+    font_size -= 0.4;
     //reset the font size 
     ellipse.style.fontSize = font_size+"px";
   }
